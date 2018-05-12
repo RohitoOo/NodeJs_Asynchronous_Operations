@@ -1,0 +1,15 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Node_Operations",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rohito",
+  "license": "ISC",
+  "dependencies": {
+    "make-dir": "^1.3.0",
+    "rimraf": "^2.6.2"
+  }
+}
