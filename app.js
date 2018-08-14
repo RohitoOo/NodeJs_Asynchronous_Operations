@@ -110,7 +110,3 @@ myEmitter.on('someEvent' , function(msg) {
 })
 
 myEmitter.emit('someEvent' , "The Event Has Been Emitted")
-
-
-
-// More Events
