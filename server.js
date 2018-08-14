@@ -1,24 +1,47 @@
 const http = require('http')
 const fs = require('fs')
+const express = require('express')
+const path = require('path')
+const app = express();
 
 
-var server = http.createServer( (req,res) => {
-console.log("Request was made to : " , req.url)
 
-if( req.url == "/website" ) {
-
-  res.writeHead(200, {'Content-type' : 'text/html'})
-  var myReadStream = fs.createReadStream(__dirname + "/index.html" , "utf8" )
-  myReadStream.pipe(res);
-
-} else {
-  res.writeHead(200, {'Content-type' : 'text/plain'})
-
-  res.end("Home Page")
-}
-
+app.get('/' , (req,res) => {
+  res.send('Hello from Express')
 })
 
-server.listen(3000, 'localhost')
+app.use(express.static(__dirname + '/public'));
+
+app.get('/website' , (req,res) => {
+  res.sendFile(path.join(__dirname + '/index.html') )
+})
+
+app.listen(3000, () => {
+  console.log("We are Live on Port 3000")
+})
+
+
+
+// HTTP Server ( w/o Express Framework )
+
+
+// var server = http.createServer( (req,res) => {
+// console.log("Request was made to : " , req.url)
+//
+// if( req.url == "/website" ) {
+//
+//   res.writeHead(200, {'Content-type' : 'text/html'})
+//   var myReadStream = fs.createReadStream(__dirname + "/index.html" , "utf8" )
+//   myReadStream.pipe(res);
+//
+// } else {
+//   res.writeHead(200, {'Content-type' : 'text/plain'})
+//
+//   res.end("Home Page")
+// }
+//
+// })
+//
+// server.listen(3000, 'localhost')
 
 // local host = 127.0.0.1
