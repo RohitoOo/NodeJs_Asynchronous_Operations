@@ -10,6 +10,9 @@ makedir('noode/rohit/bhambhani').then(path => {
 
 
 // Add text into existing txt file
+
+// Asynchronous ( fs.readFile ) VS Synchronous ( fs.readFileSync )
+
 fs.appendFile('abc.txt', 'This was added directly from the app.js file. ', function (err) {
   if (err) {
     // append failed
@@ -23,10 +26,11 @@ fs.appendFile('abc.txt', 'This was added directly from the app.js file. ', funct
 var path = require('path');
 var readStream = fs.createReadStream(path.join(__dirname) + '/abc.txt', 'utf8');
 let data = ''
+
 readStream.on('data', function(chunk) {
     data += chunk;
 }).on('end', function() {
-    console.log(data);
+    console.log("Read By readStream : " ,  data);
 });
 
 // Read the file names inside current folder
@@ -90,3 +94,23 @@ module.exports = {
   sayHello : sayHello,
   adder : adder
 }
+
+
+
+
+// Node js Core Module
+
+var events = require('events')
+
+var myEmitter = new events.EventEmitter();
+
+myEmitter.on('someEvent' , function(msg) {
+
+  console.log(msg)
+})
+
+myEmitter.emit('someEvent' , "The Event Has Been Emitted")
+
+
+
+// More Events
