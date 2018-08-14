@@ -5,7 +5,6 @@ const path = require('path')
 const app = express();
 
 
-
 app.get('/' , (req,res) => {
   res.send('Hello from Express')
 })
@@ -18,14 +17,11 @@ app.get('/website' , (req,res) => {
   res.sendFile(path.join(__dirname + '/index.html') )
 })
 
+// http://localhost:3000/profile/Rohito
+
 app.get('/profile/:name' , (req,res) => {
-  res.render('profile' , {
-
-    name: req.params.name
-  })
+  res.render('profile' , { name: req.params.name })
 })
-
-
 
 app.listen(3000, () => {
   console.log("We are Live on Port 3000")
