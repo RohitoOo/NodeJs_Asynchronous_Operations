@@ -12,9 +12,20 @@ app.get('/' , (req,res) => {
 
 app.use(express.static(__dirname + '/public'));
 
+app.set('view engine' , 'ejs')
+
 app.get('/website' , (req,res) => {
   res.sendFile(path.join(__dirname + '/index.html') )
 })
+
+app.get('/profile/:name' , (req,res) => {
+  res.render('profile' , {
+
+    name: req.params.name
+  })
+})
+
+
 
 app.listen(3000, () => {
   console.log("We are Live on Port 3000")
